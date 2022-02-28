@@ -1,13 +1,10 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>Authentification</h2>
-      <button class="btn btn-success" *ngIf="!authStatus" (click)="onSignIn()">
-        Se connecter
-      </button>
-      <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">
-        Se déconnecter
-      </button>
-    </div>
-  </div>
-</div>
+<form [formGroup]="authForm" *ngIf="!authStatus">
+  <input type="text" class="form-control" formControlName="username" [(ngModel)]="username" />
+  <input type="text" class="form-control" formControlName="password" [(ngModel)]="password" />
+  <button type="submit" class="btn btn-primary" [disabled]="authForm.invalid" (click)="onSignIn()">
+    Se connecter
+  </button>
+</form>
+<button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">
+  Se déconnecter
+</button>
