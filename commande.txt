@@ -1,5 +1,0 @@
-curl -X GET 'https://api.twitch.tv/helix/users?login=amaxzing' \ -H 'Authorization: Bearer qlfl3pn71knxrtkdxpgir2b5uyo60o' \ -H 'Client-Id: aosplncjpldwrjdnzf9lys3gzdt98v'
-
-curl -X GET 'https://api.twitch.tv/helix/users?login=amaxzing'-H 'Authorization: Bearer qlfl3pn71knxrtkdxpgir2b5uyo60o'-H 'Client-Id: aosplncjpldwrjdnzf9lys3gzdt98v'
-
-

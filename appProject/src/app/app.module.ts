@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FollowedStreamersComponent } from './followed-streamers/followed-streamers.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthComponent,
     routedComponents,
     SearchComponent,
+    FollowedStreamersComponent,
   ],
   imports: [
     HttpClientModule,
@@ -23,8 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    //ReactiveFormsModule,
-    //HttpClientModule,
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
