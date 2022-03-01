@@ -40,10 +40,12 @@ export class SearchComponent implements OnInit {
     let user = await response.json();
     console.log(user);
     this.dataReceive = true;
-    this.image = user['data'][0]['profile_image_url'];
-  }
-
-  ngSubmit() {
-    this.router.navigate(['auth']);
+    if (user['data']['length'] > 0) {
+      this.image = user['data'][0]['profile_image_url'];
+    } else {
+      this.image =
+        'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png';
+    }
+    console.log(this.image);
   }
 }
