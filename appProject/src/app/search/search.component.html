@@ -7,4 +7,13 @@
 
   </form>
   <br>
-  <img *ngIf="dataReceive " class="fit-picture" src={{image}}>
+  <div *ngIf="dataReceive ">
+    <h1>{{display_name}}<img *ngIf="broadcaster_type" class="fit-picture"
+        src="https://pngset.com/images/instagram-verified-symbol-instagram-verified-logo-cross-graphics-art-transparent-png-806692.png"
+        width="50" height="50">
+    </h1><img class="fit-picture" src={{image}}>
+
+
+    <div> {{description}} </div>
+    Nombre de vue total : {{view_count}}
+  </div>
