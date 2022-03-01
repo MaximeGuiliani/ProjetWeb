@@ -1,9 +1,10 @@
-<form [formGroup]="authForm" *ngIf="!authStatus">
+<form [formGroup]="authForm" *ngIf="!authStatus ">
   <input type="text" class="form-control" formControlName="username" [(ngModel)]="username" />
   <input type="text" class="form-control" formControlName="password" [(ngModel)]="password" />
   <button type="submit" class="btn btn-primary" [disabled]="authForm.invalid" (click)="onSignIn()">
     Se connecter
   </button>
+
 </form>
 <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">
   Se déconnecter

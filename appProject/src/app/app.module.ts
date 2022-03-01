@@ -32,7 +32,7 @@ import { StreamerInfoComponent } from './streamer-info/streamer-info.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService, AuthGuard, SearchService],
+  providers: [AuthService, AuthGuard, SearchService, FormsModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

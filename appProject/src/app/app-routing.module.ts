@@ -4,10 +4,13 @@ import { AuthComponent } from './auth/auth.component';
 import { FollowedStreamersComponent } from './followed-streamers/followed-streamers.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { StreamerInfoComponent } from './streamer-info/streamer-info.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
   { path: 'auth', component: AuthComponent },
+
+  { path: 'streamer-info', component: StreamerInfoComponent },
   { path: 'search', component: SearchComponent },
   { path: 'followed', component: FollowedStreamersComponent },
   { path: '**', redirectTo: 'not-found' },

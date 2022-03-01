@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -9,16 +8,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  @Input() streamerName!: string;
-  searchForm!: FormGroup;
+  streamerName: string = '';
+  searchForm: FormGroup;
+  dataReceive: boolean = false;
+  image: string = '';
 
-  constructor(
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private http: HttpClient
-  ) {}
-  url =
-    "curl -X GET 'https://api.twitch.tv/helix/users?login=gotaga'-H 'Authorization: Bearer qlfl3pn71knxrtkdxpgir2b5uyo60o'-H 'Client-Id: aosplncjpldwrjdnzf9lys3gzdt98v'";
+  constructor(private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -26,7 +21,7 @@ export class SearchComponent implements OnInit {
 
   initForm() {
     this.searchForm = this.formBuilder.group({
-      streamerName: [''],
+      streamerName: ['', Validators.required],
     });
   }
 
@@ -34,7 +29,7 @@ export class SearchComponent implements OnInit {
     console.log('hello');
     console.log(this.streamerName);
     let response = await fetch(
-      `https://api.twitch.tv/helix/users?login=gotaga`,
+      `https://api.twitch.tv/helix/users?login=` + this.streamerName,
       {
         headers: {
           Authorization: 'Bearer qlfl3pn71knxrtkdxpgir2b5uyo60o',
@@ -44,7 +39,8 @@ export class SearchComponent implements OnInit {
     );
     let user = await response.json();
     console.log(user);
-    return user;
+    this.dataReceive = true;
+    this.image = user['data'][0]['profile_image_url'];
   }
 
   ngSubmit() {

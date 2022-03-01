@@ -1,7 +1,10 @@
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
 
-    <input type="text" class="form-control" [(ngModel)]="streamerName" />
+    <input type="text" class="form-control" formControlName="streamerName" [(ngModel)]="streamerName" />
     <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">
       Valider
     </button>
+
   </form>
+  <br>
+  <img *ngIf="dataReceive " class="fit-picture" src={{image}}>
