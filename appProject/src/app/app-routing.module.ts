@@ -10,9 +10,17 @@ const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
   { path: 'auth', component: AuthComponent },
 
-  { path: 'streamer-info', component: StreamerInfoComponent },
-  { path: 'search', component: SearchComponent },
-  { path: 'followed', component: FollowedStreamersComponent },
+  {
+    path: 'streamer-info',
+    canActivate: [AuthGuard],
+    component: StreamerInfoComponent,
+  },
+  { path: 'search', canActivate: [AuthGuard], component: SearchComponent },
+  {
+    path: 'followed',
+    canActivate: [AuthGuard],
+    component: FollowedStreamersComponent,
+  },
   { path: '**', redirectTo: 'not-found' },
 ];
 
