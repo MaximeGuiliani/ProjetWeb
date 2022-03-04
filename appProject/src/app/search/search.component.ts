@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as e from 'express';
 
 @Component({
   selector: 'app-search',
@@ -9,14 +8,15 @@ import * as e from 'express';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  streamerName: string = '';
   searchForm: FormGroup;
   dataReceive: boolean = false;
-  image: string = '';
-  display_name: string = '';
-  description: string = '';
-  view_count: string = '';
-  broadcaster_type: boolean = true;
+  streamerProfileImage: string;
+  streamerName: string;
+  streamerDescription: string;
+  streamerViewCount: string;
+  isPartner: boolean;
+  isFound: boolean;
+  streamerNotFoundImage: string = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/8e2f5370244303.5b9d01a5d7cd5.gif';
 
   constructor(private router: Router, private formBuilder: FormBuilder) {}
 
@@ -31,10 +31,9 @@ export class SearchComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.log('hello');
-    console.log(this.streamerName);
     let response = await fetch(
-      `https://api.twitch.tv/helix/users?login=` + this.streamerName,
+      'https://api.twitch.tv/helix/users?login=' +
+        this.searchForm.value.streamerName,
       {
         headers: {
           Authorization: 'Bearer qlfl3pn71knxrtkdxpgir2b5uyo60o',
@@ -43,25 +42,21 @@ export class SearchComponent implements OnInit {
       }
     );
     let user = await response.json();
-    console.log(user);
     this.dataReceive = true;
     if (user['data']['length'] > 0) {
-      this.display_name = user['data'][0]['display_name'];
-      this.image = user['data'][0]['profile_image_url'];
+      this.isFound = true;
+      this.streamerName = user['data'][0]['display_name'];
+      this.streamerProfileImage = user['data'][0]['profile_image_url'];
       if (user['data'][0]['broadcaster_type'] === 'partner') {
-        this.broadcaster_type = true;
+        this.isPartner = true;
       } else {
-        this.broadcaster_type = false;
+        this.isPartner = false;
       }
-      console.log(this.broadcaster_type);
+      this.streamerDescription = user['data'][0]['description'];
 
-      this.description = user['data'][0]['description'];
-
-      this.view_count = user['data'][0]['view_count'];
+      this.streamerViewCount = user['data'][0]['view_count'];
     } else {
-      this.image =
-        'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png';
+      this.isFound = false;
     }
-    console.log(this.image);
   }
 }

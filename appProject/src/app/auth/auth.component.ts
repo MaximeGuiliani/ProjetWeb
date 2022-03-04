@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Validators, FormArray } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -11,8 +11,6 @@ import { Validators, FormArray } from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
   authStatus = false;
-  @Input() username!: string;
-  @Input() password!: string;
   authForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
