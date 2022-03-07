@@ -13,6 +13,7 @@ import { FollowedStreamersComponent } from './followed-streamers/followed-stream
 import { SearchService } from './services/search.service';
 import { StreamerComponent } from './streamer/streamer.component';
 import { StreamerInfoComponent } from './streamer-info/streamer-info.component';
+import { StreamerService } from './services/streamer.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { StreamerInfoComponent } from './streamer-info/streamer-info.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService, AuthGuard, SearchService, FormsModule],
+  providers: [AuthService, AuthGuard, SearchService, FormsModule, StreamerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

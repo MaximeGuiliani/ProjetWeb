@@ -1,21 +1,17 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <form [formGroup]="authForm" *ngIf="!authStatus">
-        <input type="text" class="form-control" formControlName="username" />
-        <input type="text" class="form-control" formControlName="password" />
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="authForm.invalid"
-          (click)="onSignIn()"
-        >
-          Se connecter
-        </button>
-      </form>
-      <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">
-        Se déconnecter
-      </button>
-    </div>
-  </div>
-</div>
+<form [formGroup]="authForm" *ngIf="!authStatus">
+  <label for="basic-url">Nom d'utilisateur</label>
+  <input type="text" class="form-control" formControlName="username" />
+  <label for="basic-url">Mot de passe</label>
+  <input type="text" class="form-control" formControlName="password" />
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="authForm.invalid"
+    (click)="onSignIn()"
+  >
+    Se connecter
+  </button>
+</form>
+<button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">
+  Se déconnecter
+</button>

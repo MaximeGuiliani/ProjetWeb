@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StreamerService } from '../services/streamer.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-followed-streamers',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FollowedStreamersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private streamerService: StreamerService) { }
 
-  ngOnInit(): void {
+  streamers = [];
+  streamersSubscription: Subscription;
+
+  ngOnInit() {
+    this.streamersSubscription = this.streamerService.streamersSubject.subscribe(
+      (streamers: any[]) => {
+        this.streamers = streamers;
+      }
+    );
+    this.streamerService.emitStreamerSubject();
   }
 
+  ngOnDestroy() {
+    this.streamersSubscription.unsubscribe();
+  }
 }

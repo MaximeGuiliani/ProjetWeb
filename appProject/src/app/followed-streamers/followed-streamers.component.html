@@ -1,1 +1,17 @@
-<p>followed-streamers works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Streamers suivis</h1>
+      <ul class="list-group">
+        <app-streamer
+          *ngFor="let streamer of streamers"
+          [streamerName]="streamer.streamerName"
+          [streamerProfileImage]="streamer.streamerProfileImage"
+          [isPartner]="streamer.isPartner"
+          [id]="streamer.id"
+        >
+        </app-streamer>
+      </ul>
+    </div>
+  </div>
+</div>

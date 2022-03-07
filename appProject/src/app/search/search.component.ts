@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StreamerService } from '../services/streamer.service';
 
 @Component({
   selector: 'app-search',
@@ -16,9 +17,10 @@ export class SearchComponent implements OnInit {
   streamerViewCount: string;
   isPartner: boolean;
   isFound: boolean;
+  isFollowed: boolean;
   streamerNotFoundImage: string = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/8e2f5370244303.5b9d01a5d7cd5.gif';
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(private router: Router, private formBuilder: FormBuilder, private streamerService: StreamerService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -28,6 +30,11 @@ export class SearchComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       streamerName: ['', Validators.required],
     });
+  }
+
+  followStreamer() {
+    this.isFollowed = true;
+    this.streamerService.addStreamer(this.streamerName, this.streamerProfileImage, this.isPartner);
   }
 
   async onSubmit() {
@@ -46,6 +53,13 @@ export class SearchComponent implements OnInit {
     if (user['data']['length'] > 0) {
       this.isFound = true;
       this.streamerName = user['data'][0]['display_name'];
+      console.log(this.streamerService.get(this.streamerName));
+      if (this.streamerService.get(this.streamerName) != undefined) {
+        this.isFollowed = true;
+      }
+      else {
+        this.isFollowed = false;
+      }
       this.streamerProfileImage = user['data'][0]['profile_image_url'];
       if (user['data'][0]['broadcaster_type'] === 'partner') {
         this.isPartner = true;
