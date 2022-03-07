@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { FollowedStreamersComponent } from './followed-streamers/followed-streamers.component';
 import { SearchComponent } from './search/search.component';
+import { CalendarComponent } from './calendar/calendar.component';
+
 import { AuthGuard } from './services/auth-guard.service';
 import { StreamerInfoComponent } from './streamer-info/streamer-info.component';
 
@@ -16,6 +18,8 @@ const appRoutes: Routes = [
     component: StreamerInfoComponent,
   },
   { path: 'search', canActivate: [AuthGuard], component: SearchComponent },
+  { path: 'search/:id', component: CalendarComponent },
+
   {
     path: 'followed',
     canActivate: [AuthGuard],

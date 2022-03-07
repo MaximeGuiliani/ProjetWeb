@@ -8,27 +8,20 @@
 <div *ngIf="isFound && dataReceive">
   <h1>
     {{ streamerName }}
-    <img
-      *ngIf="isPartner"
-      class="fit-picture"
+    <img *ngIf="isPartner" class="fit-picture"
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1024px-Twitter_Verified_Badge.svg.png?20211123214859"
-      width="25"
-      height="25"
-    />
-    <a class="btn btn-light" *ngIf="!isFollowed" (click)="followStreamer()"
-      >Ajouter à la liste de suivi</a
-    >
+      width="25" height="25" />
+
+    <a class="btn btn-light" *ngIf="!isFollowed" (click)="followStreamer()">Ajouter à la liste de suivi</a>
   </h1>
   <img class="fit-picture" src="{{ streamerProfileImage }}" />
   <div>{{ streamerDescription }}</div>
   Nombre de vues total : {{ streamerViewCount }}
+  <br><a class="btn btn-primary" routerLink="{{streamerId}}">calendrier </a>
 </div>
 <div *ngIf="!isFound && dataReceive">
   <h1>Ce streamer n'existe pas.</h1>
-  <img
-    class="fit-picture"
-    src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/8e2f5370244303.5b9d01a5d7cd5.gif"
-    width="500"
-    height="500"
-  />
+  <img class="fit-picture"
+    src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/8e2f5370244303.5b9d01a5d7cd5.gif" width="500"
+    height="500" />
 </div>

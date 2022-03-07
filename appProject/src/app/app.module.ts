@@ -14,6 +14,7 @@ import { SearchService } from './services/search.service';
 import { StreamerComponent } from './streamer/streamer.component';
 import { StreamerInfoComponent } from './streamer-info/streamer-info.component';
 import { StreamerService } from './services/streamer.service';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { StreamerService } from './services/streamer.service';
     FollowedStreamersComponent,
     StreamerComponent,
     StreamerInfoComponent,
+    CalendarComponent,
   ],
   imports: [
     HttpClientModule,
@@ -33,7 +35,13 @@ import { StreamerService } from './services/streamer.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService, AuthGuard, SearchService, FormsModule, StreamerService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    SearchService,
+    FormsModule,
+    StreamerService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
