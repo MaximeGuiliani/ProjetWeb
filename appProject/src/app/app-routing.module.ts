@@ -6,20 +6,15 @@ import { SearchComponent } from './search/search.component';
 import { CalendarComponent } from './calendar/calendar.component';
 
 import { AuthGuard } from './services/auth-guard.service';
-import { StreamerInfoComponent } from './streamer-info/streamer-info.component';
+import { ListCalendarComponent } from './list-calendar/list-calendar.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
   { path: 'auth', component: AuthComponent },
 
-  {
-    path: 'streamer-info',
-    canActivate: [AuthGuard],
-    component: StreamerInfoComponent,
-  },
   { path: 'search', canActivate: [AuthGuard], component: SearchComponent },
   { path: 'search/:id', component: CalendarComponent },
-
+  { path: 'home', component: ListCalendarComponent },
   {
     path: 'followed',
     canActivate: [AuthGuard],

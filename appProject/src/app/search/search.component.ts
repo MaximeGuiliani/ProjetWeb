@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StreamerService } from '../services/streamer.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -23,7 +23,6 @@ export class SearchComponent implements OnInit {
   streamerId: string;
 
   constructor(
-    private router: Router,
     private formBuilder: FormBuilder,
     private streamerService: StreamerService
   ) {}
@@ -65,7 +64,6 @@ export class SearchComponent implements OnInit {
       this.streamerName = user['data'][0]['display_name'];
       this.streamerId = user['data'][0]['id'];
 
-      console.log(this.streamerService.get(this.streamerName));
       if (this.streamerService.get(this.streamerName) != undefined) {
         this.isFollowed = true;
       } else {

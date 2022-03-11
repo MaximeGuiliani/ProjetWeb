@@ -12,10 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FollowedStreamersComponent } from './followed-streamers/followed-streamers.component';
 import { SearchService } from './services/search.service';
 import { StreamerComponent } from './streamer/streamer.component';
-import { StreamerInfoComponent } from './streamer-info/streamer-info.component';
 import { StreamerService } from './services/streamer.service';
 import { CalendarComponent } from './calendar/calendar.component';
-
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListCalendarComponent } from './list-calendar/list-calendar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,8 +27,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     SearchComponent,
     FollowedStreamersComponent,
     StreamerComponent,
-    StreamerInfoComponent,
     CalendarComponent,
+    ListCalendarComponent,
   ],
   imports: [
     HttpClientModule,
@@ -34,6 +37,12 @@ import { CalendarComponent } from './calendar/calendar.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [
     AuthService,

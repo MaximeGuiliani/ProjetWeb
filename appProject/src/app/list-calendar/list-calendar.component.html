@@ -1,0 +1,8 @@
+ <div class="card text-center" *ngFor="let calendar of listCalendar">
+   <h1>{{calendar.data.broadcaster_name}}</h1>
+   <div class="card-body" *ngFor="let calendardata of calendar.data.segments">
+     <h5 id="title" class="card-title bold">{{calendardata.title}}</h5>
+     <p class="card-text">{{calendardata.category.name}} AT {{calendardata.start_time|date: 'y MMMM  EEEE  d ' }}</p>
+     <span class="badge bg-primary rounded-pill">{{calendardata.start_time|date: "shortTime"}}</span>
+   </div>
+ </div>

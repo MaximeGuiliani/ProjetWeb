@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import Calendar, { ICalendarInfo } from 'tui-calendar';
-import 'tui-calendar/dist/tui-calendar.css';
 
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-calendar',
@@ -18,12 +17,12 @@ export class CalendarComponent implements OnInit {
   @Input() id: string;
   calendarstreamer: any;
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit() {
     this.routeSub = this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
     // TODO : Modifier pour ne pas faire une requete
-    let response2 = await fetch(
+    let responseForId = await fetch(
       'https://api.twitch.tv/helix/channels?broadcaster_id=' + this.id,
       {
         headers: {
@@ -32,7 +31,7 @@ export class CalendarComponent implements OnInit {
         },
       }
     );
-    let response = await fetch(
+    let responseForCalendar = await fetch(
       'https://api.twitch.tv/helix/schedule?broadcaster_id=' + this.id,
       {
         headers: {
@@ -41,22 +40,11 @@ export class CalendarComponent implements OnInit {
         },
       }
     );
-    let user = await response2.json();
+    let user = await responseForId.json();
     this.streamerName = user['data'][0]['broadcaster_name'];
-    let calendar = await response.json();
-    console.log(' icalendar ' + calendar);
-    this.calendarstreamer = calendar;
-    this.setCalendar();
-  }
+    let calendarData = await responseForCalendar.json();
 
-  async setCalendar() {
-    var calendartemplate = new Calendar('#calendar', {
-      defaultView: 'week',
-      isReadOnly: true,
-      useDetailPopup: true,
-      taskView: false,
-      scheduleView: ['time'],
-    });
+    this.calendarstreamer = calendarData;
   }
 
   ngOnDestroy() {

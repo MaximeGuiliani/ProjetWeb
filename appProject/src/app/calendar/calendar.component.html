@@ -1,2 +1,10 @@
-<h1>planing de : {{streamerName}}</h1>
-<div id="calendar" style="height: 800px;"></div>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<h1 class='text-center'>planing de : {{streamerName}}</h1>
+<div class="card text-center">
+
+  <div class="card-body" *ngFor="let calendar of calendarstreamer.data.segments">
+    <h5 id="title" class="card-title bold">{{calendar.title}}</h5>
+    <p class="card-text">{{calendar.category.name}} AT {{calendar.start_time|date: 'y MMMM  EEEE  d ' }}</p>
+    <span class="badge bg-primary rounded-pill">{{calendar.start_time|date: "shortTime"}}</span>
+  </div>
+</div>
