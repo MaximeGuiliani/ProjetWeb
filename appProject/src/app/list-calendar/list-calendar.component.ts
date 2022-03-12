@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HttpService } from '../services/http.service';
-import { StreamerService } from '../services/streamer.service';
 
 @Component({
   selector: 'app-list-calendar',
@@ -11,10 +10,7 @@ import { StreamerService } from '../services/streamer.service';
 export class ListCalendarComponent implements OnInit {
   streamerId: any;
   finalCalendar = [];
-  constructor(
-    private streamerService: StreamerService,
-    private httpService: HttpService
-  ) {}
+  constructor(private httpService: HttpService) {}
   streamers = [];
   streamersSubscription: Subscription;
   listCalendar = [];
@@ -36,10 +32,13 @@ export class ListCalendarComponent implements OnInit {
       .subscribe((streamers: any[]) => {
         this.streamers = streamers;
       });
-    this.streamerService.emitStreamerSubject();
 
+    this.next();
+  }
+  async next() {
     for (let i = 0; i < this.streamers.length; i++) {
       let name = this.streamers[i].streamerName;
+      console.log(name);
       let response = await fetch(
         'https://api.twitch.tv/helix/users?login=' + name,
         {
@@ -123,6 +122,7 @@ export class ListCalendarComponent implements OnInit {
       }
       listPosition[minPos].currentPos += 1;
       this.finalCalendar.push(localValue);
+      console.log(this.finalCalendar);
     }
   }
 }

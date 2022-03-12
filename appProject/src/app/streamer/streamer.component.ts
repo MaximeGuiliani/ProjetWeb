@@ -11,6 +11,7 @@ export class StreamerComponent implements OnInit {
   @Input() streamerName: string | undefined;
   @Input() streamerProfileImage: string | undefined;
   @Input() isPartner: boolean | undefined;
+  @Input() streamerDescription: string | undefined;
   @Input() id: number | undefined;
 
   constructor(

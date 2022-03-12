@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from 'express';
+import { Router } from '@angular/router';
+import { Streamer } from '../model/streamer.model';
 import { HttpService } from '../services/http.service';
 import { StreamerService } from '../services/streamer.service';
 
@@ -26,8 +27,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private streamerService: StreamerService,
-    private http: HttpService,
-    private router: Router
+    private http: HttpService
   ) {}
 
   ngOnInit(): void {
@@ -42,11 +42,27 @@ export class SearchComponent implements OnInit {
 
   followStreamer() {
     this.isFollowed = true;
-    this.http.addStreamer(
+
+    let streamer = new Streamer(
       this.streamerName,
+      this.isPartner,
       this.streamerProfileImage,
-      this.isPartner
+      this.streamerDescription
     );
+    this.http.addStreamer(streamer).subscribe(
+      (response) => {
+        if (response && response.streamerName === 'ok') {
+          alert('User crée');
+        } else {
+          alert('User Existe !');
+        }
+      },
+      (e) => {
+        console.log('erreur', e);
+      },
+      () => {}
+    );
+    console.log(streamer);
   }
 
   async onSubmit() {

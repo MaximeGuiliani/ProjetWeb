@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StreamerService } from '../services/streamer.service';
 import { Subscription } from 'rxjs';
 import { HttpService } from '../services/http.service';
 
@@ -9,10 +8,7 @@ import { HttpService } from '../services/http.service';
   styleUrls: ['./followed-streamers.component.scss'],
 })
 export class FollowedStreamersComponent implements OnInit {
-  constructor(
-    private streamerService: StreamerService,
-    private http: HttpService
-  ) {}
+  constructor(private http: HttpService) {}
 
   streamers = [];
   streamersSubscription: Subscription;
@@ -23,10 +19,20 @@ export class FollowedStreamersComponent implements OnInit {
       .subscribe((streamers: any[]) => {
         this.streamers = streamers;
       });
-    this.streamerService.emitStreamerSubject();
   }
 
   ngOnDestroy() {
     this.streamersSubscription.unsubscribe();
+  }
+
+  deleteStreamer(streamerName: String) {
+    this.http.deleteStreamer(streamerName).subscribe((result) => {
+      if (result.status === 200) {
+        console.log('ici');
+        this.ngOnInit();
+      } else {
+        alert("Le streamer n'existe pas.");
+      }
+    });
   }
 }
