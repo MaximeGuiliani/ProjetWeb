@@ -8,6 +8,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
+  Iscalendar: boolean;
+  isCalendar: boolean;
   constructor(private route: ActivatedRoute) {}
   private routeSub: Subscription;
 
@@ -19,7 +21,6 @@ export class CalendarComponent implements OnInit {
     this.routeSub = this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
-    // TODO : Modifier pour ne pas faire une requete
     let responseForId = await fetch(
       'https://api.twitch.tv/helix/channels?broadcaster_id=' + this.id,
       {
@@ -41,8 +42,13 @@ export class CalendarComponent implements OnInit {
     let user = await responseForId.json();
     this.streamerName = user['data'][0]['broadcaster_name'];
     let calendarData = await responseForCalendar.json();
+    if (calendarData.error === 'Not Found') {
+      this.isCalendar = false;
+    } else {
+      this.isCalendar = true;
 
-    this.calendarstreamer = calendarData;
+      this.calendarstreamer = calendarData;
+    }
   }
 
   ngOnDestroy() {
