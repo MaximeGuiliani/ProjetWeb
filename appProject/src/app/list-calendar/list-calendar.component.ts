@@ -16,14 +16,14 @@ export class ListCalendarComponent implements OnInit {
   listCalendar = [];
   selected: boolean;
   color = [
-    'blue',
-    'red',
-    'white',
-    'yellow',
-    'purple',
-    'green',
-    'black',
-    'cyan',
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark',
   ];
 
   async ngOnInit(): Promise<void> {
@@ -111,6 +111,7 @@ export class ListCalendarComponent implements OnInit {
           category:
             calendarValue[minPos].data.segments[listPosition[minPos].currentPos]
               .category.name,
+          id: minPos,
         };
       }
       listPosition[minPos].currentPos += 1;

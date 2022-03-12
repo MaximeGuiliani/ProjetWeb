@@ -1,5 +1,5 @@
-<div class="card text-center" *ngFor="let calendar of finalCalendar">
-  <div class="card-body">
+<div class="card text-center row row-cols-1 row-cols-md-3 g-4" *ngFor="let calendar of finalCalendar">
+  <div class="card-body col list-group-item-{{color[calendar.id]}}">
 
     <h1>{{calendar.streamerName}}</h1>
     <h5 id="title" class="card-title bold">{{calendar.title}}</h5>
