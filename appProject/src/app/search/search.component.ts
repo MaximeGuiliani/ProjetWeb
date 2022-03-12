@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from 'express';
+import { HttpService } from '../services/http.service';
 import { StreamerService } from '../services/streamer.service';
 
 @Component({
@@ -23,7 +25,9 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private streamerService: StreamerService
+    private streamerService: StreamerService,
+    private http: HttpService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +42,7 @@ export class SearchComponent implements OnInit {
 
   followStreamer() {
     this.isFollowed = true;
-    this.streamerService.addStreamer(
+    this.http.addStreamer(
       this.streamerName,
       this.streamerProfileImage,
       this.isPartner

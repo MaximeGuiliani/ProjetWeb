@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { HttpService } from '../services/http.service';
 import { StreamerService } from '../services/streamer.service';
 
 @Component({
@@ -10,7 +11,10 @@ import { StreamerService } from '../services/streamer.service';
 export class ListCalendarComponent implements OnInit {
   streamerId: any;
   finalCalendar = [];
-  constructor(private streamerService: StreamerService) {}
+  constructor(
+    private streamerService: StreamerService,
+    private httpService: HttpService
+  ) {}
   streamers = [];
   streamersSubscription: Subscription;
   listCalendar = [];
@@ -27,8 +31,9 @@ export class ListCalendarComponent implements OnInit {
   ];
 
   async ngOnInit(): Promise<void> {
-    this.streamersSubscription =
-      this.streamerService.streamersSubject.subscribe((streamers: any[]) => {
+    this.streamersSubscription = this.httpService
+      .getStreamers()
+      .subscribe((streamers: any[]) => {
         this.streamers = streamers;
       });
     this.streamerService.emitStreamerSubject();
