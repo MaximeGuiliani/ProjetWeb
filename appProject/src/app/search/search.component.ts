@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StreamerService } from '../services/streamer.service';
-import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',

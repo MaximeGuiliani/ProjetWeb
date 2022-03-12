@@ -9,10 +9,22 @@ import { StreamerService } from '../services/streamer.service';
 })
 export class ListCalendarComponent implements OnInit {
   streamerId: any;
+  finalCalendar = [];
   constructor(private streamerService: StreamerService) {}
   streamers = [];
   streamersSubscription: Subscription;
   listCalendar = [];
+  selected: boolean;
+  color = [
+    'blue',
+    'red',
+    'white',
+    'yellow',
+    'purple',
+    'green',
+    'black',
+    'cyan',
+  ];
 
   async ngOnInit(): Promise<void> {
     this.streamersSubscription =
@@ -47,6 +59,62 @@ export class ListCalendarComponent implements OnInit {
       let calendarData = await responseForCalendar.json();
       this.listCalendar.push(calendarData);
     }
-    console.log(this.listCalendar);
+    this.create_sorted_list();
+  }
+
+  create_sorted_list() {
+    let total = 0;
+    let listPosition = [];
+    for (let i = 0; i < this.listCalendar.length; i++) {
+      total += this.listCalendar[i].data.segments.length;
+      listPosition.push({
+        currentPos: 0,
+        maxPos: this.listCalendar[i].data.segments.length,
+      });
+    }
+
+    for (let i = 0; i < total; i++) {
+      let min = new Date().setFullYear(5000, 11, 3);
+      let calendarValue = this.listCalendar;
+      let streamer = '';
+      let minPos: number;
+
+      for (let i = 0; i < calendarValue.length; i++) {
+        if (listPosition[i].currentPos < listPosition[i].maxPos) {
+          if (
+            new Date(min).getTime() -
+              new Date(
+                calendarValue[i].data.segments[
+                  listPosition[i].currentPos
+                ].start_time
+              ).getTime() >
+            0
+          ) {
+            min = new Date(
+              calendarValue[i].data.segments[
+                listPosition[i].currentPos
+              ].start_time
+            ).getTime();
+            minPos = i;
+            streamer = calendarValue[i].data.broadcaster_name;
+          }
+        }
+
+        var localValue = {
+          streamerName: streamer,
+          start:
+            calendarValue[minPos].data.segments[listPosition[minPos].currentPos]
+              .start_time,
+          title:
+            calendarValue[minPos].data.segments[listPosition[minPos].currentPos]
+              .title,
+          category:
+            calendarValue[minPos].data.segments[listPosition[minPos].currentPos]
+              .category.name,
+        };
+      }
+      listPosition[minPos].currentPos += 1;
+      this.finalCalendar.push(localValue);
+    }
   }
 }

@@ -14,10 +14,6 @@ import { SearchService } from './services/search.service';
 import { StreamerComponent } from './streamer/streamer.component';
 import { StreamerService } from './services/streamer.service';
 import { CalendarComponent } from './calendar/calendar.component';
-import { FlatpickrModule } from 'angularx-flatpickr';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListCalendarComponent } from './list-calendar/list-calendar.component';
 @NgModule({
   declarations: [
@@ -37,12 +33,6 @@ import { ListCalendarComponent } from './list-calendar/list-calendar.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModalModule,
-    FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
   ],
   providers: [
     AuthService,
