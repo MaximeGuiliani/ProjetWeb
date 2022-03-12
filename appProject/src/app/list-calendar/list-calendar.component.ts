@@ -57,7 +57,9 @@ export class ListCalendarComponent implements OnInit {
         }
       );
       let calendarData = await responseForCalendar.json();
-      this.listCalendar.push(calendarData);
+      if (calendarData.error !== 'Not Found') {
+        this.listCalendar.push(calendarData);
+      }
     }
     this.create_sorted_list();
   }
