@@ -1,9 +1,15 @@
-<div class="card text-center row row-cols-1 row-cols-md-3 g-4" *ngFor="let calendar of finalCalendar">
-  <div class="card-body col list-group-item-{{color[calendar.id]}}">
+<div *ngIf="finalCalendar.length >0">
+  <div class="card text-center row row-cols-1 row-cols-md-3 g-4" *ngFor="let calendar of finalCalendar">
+    <div class="card-body col list-group-item-{{color[calendar.id]}}">
 
-    <h1>{{calendar.streamerName}}</h1>
-    <h5 id="title" class="card-title bold">{{calendar.title}}</h5>
-    <p class="card-text"> {{calendar.category}} AT {{calendar.start|date: 'y MMMM  EEEE  d ' }}</p>
-    <span class="badge bg-primary rounded-pill">{{calendar.start|date: "shortTime"}}</span>
+      <h1>{{calendar.streamerName}}</h1>
+      <h5 id="title" class="card-title bold">{{calendar.title}}</h5>
+      <p class="card-text"> {{calendar.category}} AT {{calendar.start|date: 'y MMMM  EEEE  d ' }}</p>
+      <span class="badge bg-primary rounded-pill">{{calendar.start|date: "shortTime"}}</span>
+    </div>
   </div>
+</div>
+
+<div *ngIf="finalCalendar.length ===0">
+  You are following no Streamer with a Calendar
 </div>
