@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<h1 class='text-center'>planing de : {{streamerName}}</h1>
-<div class="card text-center">
-  <div *ngIf="!isCalendar"> No calendar for this streamer</div>
+<h1 class='planning '>planing de : {{streamerName}}</h1>
+<div class=" text-center">
+  <div class='noplanning' *ngIf="!isCalendar"> No calendar for this streamer</div>
 
   <div *ngIf="isCalendar">
     <div class="card-body" *ngFor="let calendar of calendarstreamer.data.segments">

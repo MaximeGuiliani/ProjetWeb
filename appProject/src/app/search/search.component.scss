@@ -41,7 +41,7 @@ body {
     left: 0;
     width: 400px;
     height: 100px;
-    background: crimson;
+    background: rgb(230, 230, 230);
     animation: dsTop 1.5s;
   }
   .avatar-holder {
@@ -155,7 +155,7 @@ body {
     display: flex;
      .description  {
       position: relative;
-      left: -300px;
+      left: -55550px;
       width: 350;
       text-align: center;
       color: white;
@@ -163,7 +163,7 @@ body {
       animation-fill-mode: forwards;
       h6 {
         text-transform: uppercase;
-        color: crimson;
+        color: rgb(151, 149, 150);
       }
       p {
         font-size: 12px;
@@ -182,7 +182,7 @@ body {
 @keyframes fadeInMove {
   0% {
     opacity: 0;
-    left: -600px;
+    left: -500px;
   }
   100% {
     opacity: 1;
@@ -195,20 +195,7 @@ body {
   100% {opacity: 1;}
 }
 
-@keyframes htmlSkill {
-  0% {width: 0;}
-  100% {width: 95%;}
-}
 
-@keyframes cssSkill {
-  0% {width: 0;}
-  100% {width: 90%;}
-}
-
-@keyframes jsSkill {
-  0% {width: 0;}
-  100% {width: 75%;}
-}
 
 @keyframes mvBottom {
   0% {bottom: -150px;}

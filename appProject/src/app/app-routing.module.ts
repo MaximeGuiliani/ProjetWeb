@@ -14,7 +14,7 @@ const appRoutes: Routes = [
 
   {
     path: 'search',
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: SearchComponent,
   },
   { path: 'search/:id', component: CalendarComponent },

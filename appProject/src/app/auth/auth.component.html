@@ -1,12 +1,67 @@
-<form [formGroup]="authForm" *ngIf="!authStatus">
+<span *ngIf="authStatus"><a (click)="onSignOut()">
+  </a></span>
+
+
+<!-- <form [formGroup]="authForm" *ngIf="!authStatus">
   <label for="basic-url">Nom d'utilisateur</label>
   <input type="text" class="form-control" formControlName="username" />
   <label for="basic-url">Mot de passe</label>
   <input type="text" class="form-control" formControlName="password" />
-  <button type="submit" class="btn btn-primary" [disabled]="authForm.invalid" (click)="onSignIn()">
+  <a type="submit" class="btn btn-primary" [disabled]="authForm.invalid" (click)="onSignIn()">
     Se connecter
+  </a>
+</form> -->
+
+
+
+<form [formGroup]="authForm" *ngIf="!authStatus" autocomplete='off' class='form'>
+  <div class='control'>
+    <h1>
+      Sign In
+    </h1>
+  </div>
+  <div class='control block-cube block-input'>
+    <input name='username' placeholder='Username' type='text' class="form-control" formControlName="username">
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+  </div>
+  <div class='control block-cube block-input'>
+    <input name='password' placeholder='Password' type='password' class="form-control" formControlName="password">
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+  </div>
+  <button class='btn block-cube block-cube-hover' type='button' type="submit" [disabled]="authForm.invalid"
+    (click)="onSignIn()">
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='text'>
+      Log In
+    </div>
   </button>
+  <div class='credits'>
+    <a href='https://codepen.io/marko-zub/' target='_blank'>
+      My other codepens
+    </a>
+  </div>
 </form>
-<button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">
-  Se déconnecter
-</button>
