@@ -31,14 +31,12 @@ export class ListCalendarComponent implements OnInit {
       .getStreamers()
       .subscribe((streamers: any[]) => {
         this.streamers = streamers;
+        this.next();
       });
-
-    this.next();
   }
   async next() {
     for (let i = 0; i < this.streamers.length; i++) {
       let name = this.streamers[i].streamerName;
-      console.log(name);
       let response = await fetch(
         'https://api.twitch.tv/helix/users?login=' + name,
         {
@@ -122,7 +120,6 @@ export class ListCalendarComponent implements OnInit {
       }
       listPosition[minPos].currentPos += 1;
       this.finalCalendar.push(localValue);
-      console.log(this.finalCalendar);
     }
   }
 }
