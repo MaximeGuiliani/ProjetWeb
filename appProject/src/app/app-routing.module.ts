@@ -12,7 +12,11 @@ const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
   { path: 'auth', component: AuthComponent },
 
-  { path: 'search', canActivate: [AuthGuard], component: SearchComponent },
+  {
+    path: 'search',
+    //canActivate: [AuthGuard],
+    component: SearchComponent,
+  },
   { path: 'search/:id', component: CalendarComponent },
   {
     path: 'planning',

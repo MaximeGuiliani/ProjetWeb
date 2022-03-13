@@ -1,11 +1,20 @@
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <input type="text" class="form-control" formControlName="streamerName" />
-  <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">
-    Valider
-  </button>
+
+  <label>
+    <input type="text" required class="form-control" formControlName="streamerName">
+    <ul>
+      <li s>s</li>
+      <li e>e</li>
+      <li a>a</li>
+      <li r>r</li>
+      <li c>c</li>
+      <li h>h</li>
+    </ul>
+  </label>
 </form>
-<br />
-<div *ngIf="isFound && dataReceive">
+
+<!--
+<div class="streamer" *ngIf="isFound && dataReceive">
   <h1>
     {{ streamerName }}
     <img *ngIf="isPartner" class="fit-picture"
@@ -18,10 +27,41 @@
   <div>{{ streamerDescription }}</div>
   Nombre de vues total : {{ streamerViewCount }}
   <br><a class="btn btn-primary" routerLink="{{streamerId}}">calendrier </a>
-</div>
+</div> -->
+
+
 <div *ngIf="!isFound && dataReceive">
   <h1>Ce streamer n'existe pas.</h1>
   <img class="fit-picture"
     src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/8e2f5370244303.5b9d01a5d7cd5.gif" width="500"
     height="500" />
+</div>
+
+
+
+<div class="card" *ngIf="isFound && dataReceive">
+  <div class="ds-top"></div>
+  <div class="avatar-holder">
+    <img src="{{ streamerProfileImage }}">
+  </div>
+
+
+  <div class="button">
+    <a class="btn" *ngIf="!isFollowed" (click)="followStreamer()">+ Follow <i class="fas fa-user-plus"></i></a>
+    <a *ngIf="isFollowed ">Already Followed <i class=" fas fa-user-plus"></i></a>
+
+  </div>
+  < <div class="ds-info">
+    <div class="ds description">
+      <h6 title="Descriptions">Descriptions </h6>
+      <p>{{ streamerDescription }}</p>
+    </div>
+
+
+</div>
+<div class="buttonCalendar">
+
+  <a class="btn" routerLink="{{streamerId}}">See next Schedule <i class="fas fa-user-plus"></i></a>
+</div>
+
 </div>

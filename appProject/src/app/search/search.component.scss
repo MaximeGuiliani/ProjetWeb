@@ -1,0 +1,348 @@
+.streamer{
+  text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Krub:400,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #202020;
+  font-family: 'Krub', sans-serif;
+}
+
+.card {
+  position: absolute;
+  margin: auto;
+  top: 10%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 350px;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px 5px rgba(0, 0, 0, 0.2);
+  background: #151515;
+  overflow: hidden;
+  .ds-top {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 400px;
+    height: 100px;
+    background: crimson;
+    animation: dsTop 1.5s;
+  }
+  .avatar-holder {
+    position: absolute;
+    margin: auto;
+    top: 40px;
+    right: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px #151515,
+                inset 0 0 0 5px #000000,
+                inset 0 0 0 5px #000000,
+                inset 0 0 0 5px #000000,
+                inset 0 0 0 5px #000000,;
+    background: white;
+    overflow: hidden;
+    animation: mvTop 1.5s;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .view {
+    position: absolute;
+    margin: auto;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    text-align: center;
+    animation: fadeIn 2s ease-in;
+
+
+    h6 {
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: white;
+      width: 40px;
+    }
+  }
+  .button {
+    position: absolute;
+    margin: auto;
+    padding: 8px;
+    top:  -150px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: inherit;
+    height: 40px;
+    text-align: center;
+    animation: fadeIn 2s ease-in;
+    outline: none;
+    a {
+      padding: 5px 20px;
+      border-radius: 10px;
+      color: white;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      font-size: 15px;
+      transition: all 1s;
+      &:hover {
+        color: white;
+        background: crimson;
+      }
+    }
+  }
+  .buttonCalendar {
+    position: absolute;
+    margin: auto;
+    padding: 8px;
+    top:  -50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: inherit;
+    height: 40px;
+    text-align: center;
+    animation: fadeIn 2s ease-in;
+    outline: none;
+    a {
+      padding: 5px 20px;
+      border-radius: 10px;
+      color: white;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      font-size: 15px;
+      transition: all 1s;
+      &:hover {
+        color: white;
+        background: cornflowerblue;
+      }
+    }
+  }
+  .ds-info {
+    position: absolute;
+    margin: auto;
+    top: 120px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: inherit;
+    height: 40px;
+    display: flex;
+     .description  {
+      position: relative;
+      left: -300px;
+      width: 350;
+      text-align: center;
+      color: white;
+      animation: fadeInMove 2s;
+      animation-fill-mode: forwards;
+      h6 {
+        text-transform: uppercase;
+        color: crimson;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+    .ds {
+      &:nth-of-type(2) {
+        animation-delay: .5s;
+      }
+      &:nth-of-type(1) {
+        animation-delay: 1s;
+      }
+    }
+  }
+}
+@keyframes fadeInMove {
+  0% {
+    opacity: 0;
+    left: -600px;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes htmlSkill {
+  0% {width: 0;}
+  100% {width: 95%;}
+}
+
+@keyframes cssSkill {
+  0% {width: 0;}
+  100% {width: 90%;}
+}
+
+@keyframes jsSkill {
+  0% {width: 0;}
+  100% {width: 75%;}
+}
+
+@keyframes mvBottom {
+  0% {bottom: -150px;}
+  100% {bottom: 10px;}
+}
+
+@keyframes mvTop {
+  0% {top: -150px;}
+  100% {top: 40px;}
+}
+
+@keyframes dsTop {
+  0% {top: -150px;}
+  100% {top: 0;}
+}
+
+.following {
+  color: white;
+  background: crimson;
+}
+
+
+*{
+  box-sizing: border-box;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-family: 'Knewave', cursive;
+}
+label{
+  width: 100%;
+  max-width: 300px;
+}
+input{
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  background-color: white;
+  border: 2px solid black;
+  color: #111;
+  font-size: 15px;
+  box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.62);
+  height: 58px;
+  transform: skew(-3deg, 1deg);
+  font-family: 'Knewave', cursive;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  &:focus,
+  &:valid{
+    outline: none;
+    ~ ul li{
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}){
+          &::before{
+            filter: blur(20px);
+            transform: translate(0, -35px) rotate(-210deg);
+          }
+          &::after{
+            filter: blur(0);
+            transform: scale(1) rotate(0);
+          }
+        }
+      }
+      @for $i from 1 through 6{
+        &:nth-child(#{$i}){
+          &::after{
+            transition-delay: 200ms + ($i * 200ms);
+          }
+        }
+      }
+    }
+  }
+}
+label{
+  position: relative;
+  margin-top: 1%;
+  margin-left: 40%;
+
+}
+ul{
+  position: absolute;
+  top: 38px;
+  left: -4px;
+  margin: 0;
+  list-style: none;
+  padding-left: 22px;
+  position: absolute;
+  display: flex;
+  pointer-events: none;
+  transition: 200ms;
+  li{
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: transparent;
+    pointer-events: none;
+    transition: 500ms ease-in-out;
+    ::selection{
+      color: transparent;
+    }
+    &::after,
+    &::before{
+      color: black;
+      position: absolute;
+      transition: 500ms ease-in-out;
+    }
+    &::before{
+      top: -20px;
+    }
+    &::after{
+      top: -63px;
+      transform: scale(0) rotate(210deg);
+      filter: blur(20px);
+    }
+    $chars: s,e,a,r,c,h;
+    @each $char in $chars {
+      $i: index($chars, $char);
+      $x: index($chars, $char);
+      $i: $i * 200;
+      $y: $x * 12;
+      &[#{$char}]::before{
+        content: attr($char) quote($char);
+        transition-delay: $i+ms;
+      }
+      &[#{$char}]::after{
+        content: attr($char) quote($char);
+        left: unquote($y+'px');
+        color: #666;
+      }
+    }
+  }
+}

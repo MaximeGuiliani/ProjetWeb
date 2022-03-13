@@ -3,12 +3,7 @@
   <input type="text" class="form-control" formControlName="username" />
   <label for="basic-url">Mot de passe</label>
   <input type="text" class="form-control" formControlName="password" />
-  <button
-    type="submit"
-    class="btn btn-primary"
-    [disabled]="authForm.invalid"
-    (click)="onSignIn()"
-  >
+  <button type="submit" class="btn btn-primary" [disabled]="authForm.invalid" (click)="onSignIn()">
     Se connecter
   </button>
 </form>

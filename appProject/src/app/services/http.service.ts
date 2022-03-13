@@ -6,6 +6,7 @@ import { Streamer } from '../model/streamer.model';
 export class HttpService {
   private serverUrl = 'http://localhost:8080/';
   constructor(private http: HttpClient) {}
+
   public getStreamers(): Observable<any> {
     return this.http.get(this.serverUrl + 'followed');
   }

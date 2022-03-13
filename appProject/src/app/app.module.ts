@@ -15,6 +15,7 @@ import { StreamerComponent } from './streamer/streamer.component';
 import { StreamerService } from './services/streamer.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ListCalendarComponent } from './list-calendar/list-calendar.component';
+import { HttpService } from './services/http.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { ListCalendarComponent } from './list-calendar/list-calendar.component';
     SearchService,
     FormsModule,
     StreamerService,
+    HttpService,
   ],
   bootstrap: [AppComponent],
 })
