@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpService } from '../services/http.service';
 import { StreamerService } from '../services/streamer.service';
 
 @Component({
@@ -14,10 +13,7 @@ export class StreamerComponent implements OnInit {
   @Input() streamerDescription: string | undefined;
   @Input() id: number | undefined;
 
-  constructor(
-    private streamerService: StreamerService,
-    private http: HttpService
-  ) {}
+  constructor(private streamerService: StreamerService) {}
 
   onSwitch() {
     this.streamerService.remove(this.id);

@@ -2,24 +2,26 @@
   <div class="row">
     <div class="col-xs-12">
       <h1 class="title">Streamers suivis</h1>
-      <ul class="list-group">
+      <ul *ngIf="streamers.length>0" class="list-group">
         <li class="list-group-item" *ngFor="let streamer of streamers">
           <h5 class="card-title">
             <img class="fit-picture" src="{{ streamer.streamerProfileImage }}" width="50" height="50" />
             {{ streamer.streamerName }}
-            <img *ngIf="isPartner" class="fit-picture"
+            <img *ngIf="streamer.isPartner" class="fit-picture"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1024px-Twitter_Verified_Badge.svg.png?20211123214859"
               width="25" height="25" />
           </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Description</h6>
           <p class="card-text">
-            {{ streamer.streamerDescription }}
+            {{ streamer.descriptions }}
           </p>
           <button class="btn btn-sm btn-danger" (click)="deleteStreamer(streamer.streamerName)">
             Supprimer
           </button>
         </li>
       </ul>
+
+      <div class="noFollow" *ngIf="streamers.length===0">You are following no streamers</div>
     </div>
   </div>
 </div>
